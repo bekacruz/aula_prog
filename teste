@@ -1,1 +1,60 @@
+#BASE
+refArquivoEntrada = open("C:/Users/bekacruz/Documents/AA.fasta")
+arquivoFasta = refArquivoEntrada.read()
+cabecalho = arquivoFasta.split('\n') [0] [1:]
+sequencia = ''.join(arquivoFasta.split('\n')[1:])
+print ("Identificador: %s"%cabecalho)
+print ("Sequencia: %s"%sequencia)
+refArquivoEntrada.close()
+
+#Q1
+refArquivoEntrada = open("C:/Users/bekacruz/Documents/AA.fasta")
+refArquivoSaida = open("C:/Users/bekacruz/Documents/AA.out",'w')
+refArquivoSaida.write("header\tseq\n")
+cabecalho = refArquivoEntrada.readline()[1:-1]
+sequencia = ""
+for linha in refArquivoEntrada:
+    sequencia += linha.replace('\n','')
+refArquivoSaida.write ("%s\t%s"% (cabecalho,sequencia))
+refArquivoEntrada.close()
+refArquivoSaida.close()
+
+
+
+#Q2
+refArquivo = open("C:/Users/bekacruz/Documents/TriTrypDB-47_TcruziCLBrenerEsmeraldo-like_AnnotatedProteins.fasta")
+cabecalho = ""
+sequencia = ""
+for linha in refArquivo.readlines():
+    if ">" in linha:
+        print (cabecalho)
+        print (sequencia)
+        sequencia = ""
+        cabecalho = linha.strip('\n')
+    else:
+        sequencia += linha.strip('\n')
+print(cabecalho)
+print(sequencia)
+refArquivo.close()
+
+
+
+#Q3
+refArquivoEntrada = open("C:/Users/bekacruz/Documents/species.csv")
+refArquivoEntrada.readline()
+for linha in refArquivoEntrada:
+    data = linha.split(",")
+    if data[3].upper().rstrip() == "BIRD":
+        print ("%s\t%s\t%s\t%s" %(data[0], data[1], data[2], data[3].rstrip()))
+refArquivoEntrada.close()
+
+import csv
+with open ("C:/Users/bekacruz/Documents/species.csv") as csvfile:
+    all_species = csv.reader(csvfile, delimiter=',')
+    for linha in all_species:
+        if linha[3].upper().rstrip() == "BIRD":
+            print ("%s\t%s\t%s\t%s" % (data[0], data[1], data[2], data[3].rstrip()))
+
+
+
 
